@@ -1,0 +1,56 @@
+Project Plan Summary Report
+Title:
+
+Few-Shot Retinal Disease Classification Using Prototypical Networks
+
+Introduction and Motivation
+
+Retinal diseases such as Diabetic Retinopathy, Glaucoma, and Macular Degeneration are among the leading causes of vision impairment worldwide. Early detection is crucial, but automated retinal disease classification using deep learning often suffers from a lack of large, labeled medical datasets. This problem is particularly severe in developing countries like Bangladesh, where expert annotations are expensive and limited.
+To address this challenge, our project proposes a few-shot learning–based retinal disease classification system using Prototypical Networks, which can learn effectively from very few labeled examples per class.
+
+Related Work Review
+
+Recent research demonstrates the effectiveness of few-shot learning in medical imaging. Snell et al. introduced Prototypical Networks, which represent each class using a prototype in an embedding space and classify samples based on distance metrics. This approach has been successfully applied to low-data problems.
+Additionally, studies such as Burlina et al. (2020) and Yoo et al. (2021) applied few-shot and low-shot learning for retinal disease detection using fundus and OCT images, showing promising performance when traditional deep learning methods fail due to data scarcity. These works motivate our choice of few-shot learning for retinal disease classification.
+
+Proposed Project Plan
+
+Our project aims to design and evaluate a prototypical network–based few-shot learning framework for classifying retinal diseases from fundus images. The system will first use pre-trained convolutional neural networks such as VGG19 and ResNet50 as feature extractors. These models will be fine-tuned using transfer learning to generate discriminative feature embeddings.
+
+In the few-shot learning setup, the dataset will be divided into support sets and query sets following N-way K-shot tasks. For each class in the support set, feature vectors will be averaged to form class prototypes. Query images will be classified by computing the Euclidean distance between their feature embeddings and the class prototypes. Cross-entropy loss will be used during training to optimize the embedding space.
+
+Dataset and Preprocessing Plan
+
+We plan to use the RFMiD 2021 retinal fundus image dataset, which contains multiple retinal disease classes with label information provided via CSV files. Images will be resized to 224×224 pixels and preprocessed using contrast enhancement techniques such as CLAHE to improve visibility. Data augmentation methods, including rotation and flipping, will be applied to increase diversity and reduce overfitting.
+
+Tools, Libraries, and Frameworks Used
+
+Framework: PyTorch – for implementing deep learning and few-shot learning models
+
+Pre-trained Models: VGG19, ResNet50 (ImageNet weights)
+
+Few-Shot Method: Prototypical Networks (Snell et al., 2017)
+
+Dataset Tool: RFMiD dataset with CSV-based labeling
+
+Supporting Tools: OpenCV for image preprocessing, NumPy and Pandas for data handling
+
+Learning Resources: Research papers, PyTorch tutorials, and few-shot learning implementation guides
+
+Expected Outcomes
+
+The expected outcome of this project is a data-efficient retinal disease classification model capable of generalizing to unseen disease classes using very few labeled samples. We anticipate reduced computational cost, faster training time, and competitive performance compared to conventional deep learning approaches. The project will demonstrate the feasibility of few-shot learning for real-world medical image classification tasks.
+
+Conclusion
+
+This project plan focuses on solving the critical problem of data scarcity in retinal disease classification by leveraging few-shot learning and prototypical networks. By combining transfer learning, metric-based classification, and robust preprocessing techniques, the proposed system aims to provide an effective and practical solution for medical image analysis in low-resource settings.
+
+References (Indicative)
+
+Snell, J., Swersky, K., & Zemel, R. (2017). Prototypical Networks for Few-shot Learning.
+
+Burlina, P. et al. (2020). Low-Shot Deep Learning of Diabetic Retinopathy.
+
+Yoo, T. K. et al. (2021). Few-shot classification for rare retinal diseases.
+
+PyTorch Documentation and Tutorials
