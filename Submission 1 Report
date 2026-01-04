@@ -1,0 +1,122 @@
+Tool Usage, Dataset Analysis, and Proof of Concept (PoC)
+Project Context
+
+This project focuses on few-shot retinal disease classification using Prototypical Networks and pre-trained CNN models. Due to limited labeled medical data, we adopt a metric-based few-shot learning approach and evaluate its feasibility through partial implementation and exploratory data analysis (EDA).
+
+Tools, Libraries, and Tutorials Used
+
+Framework: PyTorch – for model implementation and training
+
+Models: VGG19 and ResNet50 (pre-trained on ImageNet)
+
+Dataset Handling: Pandas, NumPy
+
+Image Processing: OpenCV, PIL
+
+Visualization: Matplotlib, Seaborn
+
+Dataset: RFMiD 2021 Retinal Fundus Image Dataset
+
+Tutorials/References:
+
+PyTorch Prototypical Networks tutorial
+
+RFMiD Dataset documentation
+
+Python Graph Gallery (for visualization techniques)
+
+Dataset Overview and Raw Data Analysis
+
+The RFMiD 2021 dataset contains 3200 retinal fundus images with 46 disease categories, accompanied by a CSV file storing image-level labels.
+
+Basic Dataset Statistics (Raw Data):
+
+Total images: 3200
+
+Training set: 1920 images
+
+Validation set: 640 images
+
+Test set: 640 images
+
+Image type: RGB fundus images
+
+Resolution (varies): resized to 224×224 during preprocessing
+
+Using Pandas, we analyzed the CSV label file to observe class distributions. The dataset is highly imbalanced, with some diseases having very few samples, validating the need for few-shot learning.
+
+Data Cleaning and Preprocessing
+
+Images were manually cropped and resized to 224×224
+
+Label inconsistencies were checked using CSV inspection
+
+Contrast enhancement applied using CLAHE
+
+Data augmentation applied:
+
+Horizontal & vertical flips
+
+90° and 180° rotations
+
+After cleaning, image visibility and feature clarity improved significantly.
+
+Exploratory Data Analysis (EDA)
+
+Following standard EDA steps:
+
+Class Frequency Bar Chart: showed severe class imbalance
+
+Sample Image Visualization: common vs uncommon disease classes
+
+Pixel Intensity Distribution Plot: confirmed normalization benefits
+
+Two example visualizations were generated:
+
+Bar plot of number of samples per disease class
+
+Histogram of pixel intensity values before and after CLAHE
+
+These analyses guided the selection of few-shot learning instead of conventional classification.
+
+Proof of Concept (PoC): Partial Implementation
+
+A basic PoC was implemented to validate feasibility.
+
+Steps Implemented:
+
+Feature extraction using VGG19 and ResNet50
+
+Creation of N-way K-shot tasks (e.g., 2-way 10-shot, 3-way 5-shot)
+
+Prototype computation by averaging support set embeddings
+
+Classification of query images using Euclidean distance
+
+Model optimization using cross-entropy loss
+
+Sample Output:
+
+Configuration: 2-way 10-shot classification
+
+Model: VGG19
+
+Accuracy: 80%
+
+Loss: 0.364
+
+This result demonstrates that the proposed approach can correctly classify unseen retinal disease classes with limited labeled samples.
+
+Minor Configuration Changes from Online Code
+
+Modified input pipeline to handle RFMiD fundus images
+
+Replaced standard classifier head with prototype-based distance computation
+
+Adjusted learning rate and freezing strategy for medical images
+
+These changes made the implementation more suitable for retinal disease classification.
+
+Conclusion
+
+The tool usage, dataset analysis, and PoC results confirm that few-shot learning with prototypical networks is a promising approach for retinal disease classification under data scarcity. The partial implementation successfully demonstrates feasibility and provides a strong foundation for full-scale experimentation and optimization.
